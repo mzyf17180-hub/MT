@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Server - Season 8</title>
+    <style>
+        :root {
+            --bg: #0d0f15;
+            --card-bg: #161922;
+            --border: #232736;
+            --primary: #ff4655;
+            --gold: #ffaa00;
+            --dev: #7289da;
+            --text: #ffffff;
+            --subtext: #8b92a5;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding: 15px; }
+        .container { max-width: 850px; margin: 0 auto; }
+
+        header { text-align: center; padding: 25px 0 15px 0; border-bottom: 2px solid var(--border); margin-bottom: 25px; }
+        .season-badge { background: linear-gradient(45deg, var(--primary), #ff7300); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; display: inline-block; margin-bottom: 10px; }
+        h1 { font-size: 1.8rem; font-weight: 800; }
+
+        .section-title { font-size: 1.1rem; font-weight: bold; margin: 25px 0 15px 0; border-right: 4px solid var(--primary); padding-right: 10px; color: var(--text); }
+        .section-title.gold { border-right-color: var(--gold); }
+        .section-title.dev { border-right-color: var(--dev); }
+
+        .owner-card { background: linear-gradient(135deg, rgba(255, 170, 0, 0.08), var(--card-bg)); border: 1.5px solid var(--gold); border-radius: 12px; padding: 18px; display: flex; align-items: center; gap: 15px; }
+        .owner-avatar { width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; }
+        .owner-badge { background: var(--gold); color: #000; font-weight: bold; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 4px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 15px; display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--dev); object-fit: cover; }
+        .user-tag { color: var(--subtext); font-size: 0.8rem; }
+        .role-badge { background: rgba(114, 137, 218, 0.15); color: var(--dev); border: 1px solid var(--dev); font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px; }
+
+        .stream-box { background: var(--card-bg); border-radius: 12px; padding: 10px; border: 1px solid var(--border); }
+        .iframe-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; background: #000; }
+        .iframe-container iframe { position: absolute; top:0; left:0; width: 100%; height: 100%; border: 0; }
+
+        .btn-group { display: flex; gap: 10px; justify-content: center; margin-top: 30px; }
+        .btn { padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-align: center; flex: 1; max-width: 200px; }
+        .btn-discord { background-color: #5865F2; color: #fff; }
+        .btn-connect { background-color: #23a55a; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="season-badge">SEASON 8 - السيزون الثامن</span>
+            <h1>إدارة السيرفر والبثوث المباشرة</h1>
+        </header>
+
+        <!-- قسم الأونر -->
+        <div class="section-title gold">مالك السيرفر (Owner)</div>
+        <div class="owner-card">
+            <!-- استبدل 123456789 بـ Discord ID للمالك -->
+            <img class="owner-avatar" src="https://unavatar.io/discord/123456789" alt="Owner Avatar">
+            <div>
+                <span class="owner-badge">SERVER OWNER</span>
+                <h2 style="font-size: 1.2rem;">اسم المالك</h2>
+                <div class="user-tag">@owner_user</div>
+            </div>
+        </div>
+
+        <!-- قسم مطوري الموقع والاكسس -->
+        <div class="section-title dev">مطورو الموقع والأكسس (Dev Access)</div>
+        <div class="grid">
+            <div class="card">
+                <!-- استبدل 123456789 بـ Discord ID للمطور -->
+                <img class="avatar" src="https://unavatar.io/discord/123456789" alt="Dev Avatar">
+                <div>
+                    <h3 style="font-size: 0.95rem;">اسم المطور</h3>
+                    <div class="user-tag">@dev_user</div>
+                    <span class="role-badge">FULL ACCESS</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم البث المباشر -->
+        <div class="section-title">البث المباشر</div>
+        <div class="stream-box">
+            <div class="iframe-container">
+                <!-- استبدل USERNAME باسم قناة التويتش -->
+                <iframe src="https://player.twitch.tv/?channel=USERNAME&parent=mzyf17180-hub.github.io" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- الأزرار -->
+        <div class="btn-group">
+            <a href="https://discord.gg/YOUR_DISCORD" class="btn btn-discord" target="_blank">الديسكورد</a>
+            <a href="#" class="btn btn-connect">دخول السيرفر</a>
+        </div>
+    </div>
+</body>
+</html>
