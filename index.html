@@ -4,236 +4,325 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MT ROLEPLAY - OFFICIAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         :root {
-            --primary: #ff2a55;
-            --primary-glow: rgba(255, 42, 85, 0.4);
-            --gold: #ffb700;
-            --gold-glow: rgba(255, 183, 0, 0.3);
-            --roblox-blue: #00a2ff;
-            --discord: #5865F2;
-            --tiktok: #ff0050;
-            --bg-dark: #07090e;
-            --card-glass: rgba(18, 22, 33, 0.7);
-            --border-glass: rgba(255, 255, 255, 0.08);
+            --bg-main: #080a0f;
+            --card-bg: rgba(15, 18, 28, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-glow: #00f2fe;
+            --accent-gold: #ffb700;
+            --accent-purple: #7928ca;
+            --tiktok-color: #ff0050;
+            --discord-color: #5865F2;
+            --roblox-color: #00a2ff;
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Tajawal', sans-serif;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: var(--bg-dark) url('https://images.wallpapersden.com/image/download/gta-5-roleplay_bWdpbm2UmZqaraWkpJRmbmdlrWZlbWU.jpg') no-repeat center center fixed;
+            background-color: var(--bg-main);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(121, 40, 202, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(0, 242, 254, 0.12) 0%, transparent 45%),
+                url('https://images.wallpapersden.com/image/download/gta-5-roleplay_bWdpbm2UmZqaraWkpJRmbmdlrWZlbWU.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
             background-size: cover;
-            color: #ffffff;
+            background-attachment: fixed;
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px 15px;
+            padding: 30px 15px;
             position: relative;
+            overflow-x: hidden;
         }
 
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(7, 9, 14, 0.75) 0%, rgba(7, 9, 14, 0.95) 100%);
-            backdrop-filter: blur(8px);
+            background: rgba(8, 10, 15, 0.88);
+            backdrop-filter: blur(12px);
             z-index: 0;
         }
 
-        .container {
+        .wrapper {
             width: 100%;
-            max-width: 800px;
+            max-width: 680px;
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
+            padding: 10px 0;
         }
 
-        .logo-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold);
-            box-shadow: 0 0 25px var(--gold-glow);
+        .logo-box {
+            position: relative;
+            display: inline-block;
             margin-bottom: 12px;
         }
 
-        .badge-season {
-            background: linear-gradient(90deg, var(--primary), #ff7300);
+        .logo-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border: 2px solid rgba(255, 183, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            box-shadow: 0 0 30px rgba(255, 183, 0, 0.25);
+            margin: 0 auto;
+        }
+
+        .season-tag {
+            background: linear-gradient(90deg, var(--accent-purple), var(--primary-glow));
             color: #fff;
+            font-size: 0.8rem;
+            font-weight: 800;
             padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
+            border-radius: 50px;
             display: inline-block;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             margin-bottom: 8px;
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 900;
-            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+            background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .glass-box {
-            background: var(--card-glass);
-            border: 1px solid var(--border-glass);
-            backdrop-filter: blur(16px);
-            border-radius: 20px;
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 22px;
             padding: 22px;
-            margin-bottom: 22px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .section-title {
-            font-size: 1.1rem;
+        .card-header-title {
+            font-size: 1.05rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
+            color: var(--text-main);
         }
 
         .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin-top: 15px;
             direction: ltr;
         }
 
-        .time-card {
+        .time-box {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 12px 5px;
             text-align: center;
         }
 
-        .time-num {
-            font-size: 1.8rem;
+        .time-box .num {
+            font-size: 1.7rem;
             font-weight: 900;
-            color: #fff;
+            color: var(--primary-glow);
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+            display: block;
+            line-height: 1.1;
         }
 
-        .time-label {
+        .time-box .label {
             font-size: 0.75rem;
-            color: #8a92a6;
+            color: var(--text-sub);
+            margin-top: 4px;
+            display: block;
         }
 
-        .grid-cards {
+        .people-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 12px;
         }
 
-        .user-card {
+        .person-card {
             background: rgba(0, 0, 0, 0.35);
-            border: 1px solid var(--border-glass);
-            border-radius: 14px;
-            padding: 12px 15px;
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
-        .user-avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold);
-            background-color: #1a1d26;
+        .person-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        .user-info {
+        .person-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .owner-icon {
+            background: rgba(255, 183, 0, 0.1);
+            color: var(--accent-gold);
+            border: 1px solid rgba(255, 183, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 183, 0, 0.15);
+        }
+
+        .dev-icon {
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--primary-glow);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+        }
+
+        .person-info {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
 
-        .user-name-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .role-badge-img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            flex: 1;
-            min-width: 180px;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-weight: 800;
+        .person-name {
             font-size: 1rem;
-            text-align: center;
+            font-weight: 800;
+        }
+
+        .person-role {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+        }
+
+        .person-tag {
+            font-size: 0.8rem;
+            color: var(--primary-glow);
+            font-weight: 600;
+            direction: ltr;
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        .actions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1.05rem;
             text-decoration: none;
             color: #fff;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.3s;
+            justify-content: space-between;
+            transition: all 0.3s ease;
             border: none;
-            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .btn:hover {
+        .action-btn:hover {
             transform: translateY(-3px);
             filter: brightness(1.15);
         }
 
-        .btn-discord { background: var(--discord); }
-        .btn-tiktok { background: linear-gradient(45deg, #00f2fe, #ff0050); }
-        .btn-roblox { background: linear-gradient(45deg, #00a2ff, #0055ff); box-shadow: 0 0 15px rgba(0, 162, 255, 0.4); }
+        .btn-tiktok {
+            background: linear-gradient(135deg, #111, #ff0050);
+            border: 1px solid rgba(255, 0, 80, 0.3);
+        }
 
-        .dev-btn-trigger {
+        .btn-discord {
+            background: linear-gradient(135deg, #1e2238, var(--discord-color));
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+
+        .btn-roblox {
+            background: linear-gradient(135deg, #0052d4, #4364f7, #6fb1fc);
+            border: 1px solid rgba(0, 162, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.3);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-content i {
+            font-size: 1.4rem;
+        }
+
+        .admin-gear {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(18, 22, 33, 0.9);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
+            background: rgba(15, 18, 28, 0.9);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 99;
+            box-shadow: 0 0 15px rgba(255, 183, 0, 0.2);
         }
 
-        .modal-overlay {
+        .modal-bg {
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -241,206 +330,148 @@
             padding: 20px;
         }
 
-        .modal {
-            background: #10141e;
-            border: 1px solid var(--gold);
+        .modal-body {
+            background: #0f121c;
+            border: 1px solid var(--accent-gold);
             border-radius: 20px;
             width: 100%;
-            max-width: 550px;
-            max-height: 85vh;
-            overflow-y: auto;
+            max-width: 450px;
             padding: 25px;
         }
 
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.85rem; color: #8a92a6; margin-bottom: 5px; }
-        .form-group input, .form-group textarea {
+        .input-box {
+            margin-bottom: 15px;
+        }
+
+        .input-box label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            margin-bottom: 6px;
+        }
+
+        .input-box input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-glass);
-            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
             color: #fff;
+            outline: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- الهيدر -->
+    <div class="wrapper">
         <header>
-            <img id="logo-img" class="logo-img" src="https://via.placeholder.com/150/121621/ffb700?text=MT" alt="MT Logo">
-            <div><span class="badge-season">SEASON 8 - السيزون الثامن</span></div>
-            <h1 id="server-title">MT ROLEPLAY</h1>
+            <div class="logo-box">
+                <div class="logo-avatar">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+            </div>
+            <div><span class="season-tag">SEASON 8 - السيزون الثامن</span></div>
+            <h1>MT ROLEPLAY</h1>
         </header>
 
-        <!-- عداد الافتتاح -->
-        <div class="glass-box text-center">
-            <div class="section-title" style="justify-content: center; color: var(--gold);">
-                <i class="fa-solid fa-clock"></i>
+        <div class="glass-card" style="text-align: center;">
+            <div class="card-header-title" style="justify-content: center; color: var(--accent-gold);">
+                <i class="fa-solid fa-hourglass-half"></i>
                 <span>الوقت المتبقي لافتتاح الماب</span>
             </div>
             <div class="timer-grid">
-                <div class="time-card"><span class="time-num" id="d">00</span><span class="time-label">أيام</span></div>
-                <div class="time-card"><span class="time-num" id="h">00</span><span class="time-label">ساعات</span></div>
-                <div class="time-card"><span class="time-num" id="m">00</span><span class="time-label">دقائق</span></div>
-                <div class="time-card"><span class="time-num" id="s">00</span><span class="time-label">ثواني</span></div>
+                <div class="time-box"><span class="num" id="d">00</span><span class="label">أيام</span></div>
+                <div class="time-box"><span class="num" id="h">00</span><span class="label">ساعات</span></div>
+                <div class="time-box"><span class="num" id="m">00</span><span class="label">دقائق</span></div>
+                <div class="time-box"><span class="num" id="s">00</span><span class="label">ثواني</span></div>
             </div>
         </div>
 
-        <!-- قسم التيك توك -->
-        <div class="glass-box" style="text-align: center;">
-            <div class="section-title" style="justify-content: center; color: var(--tiktok);">
-                <i class="fa-brands fa-tiktok"></i>
-                <span id="tiktok-title">البث المباشر (@mtzcfw)</span>
+        <div class="glass-card">
+            <div class="card-header-title" style="color: var(--primary-glow);">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>إدارة ومطوري السيرفر</span>
             </div>
-            <p style="color: #8a92a6; font-size: 0.85rem; margin-bottom: 15px;">انقر هنا لمتابعة البث مباشرة</p>
-            <a id="tiktok-btn" href="https://www.tiktok.com/@mtzcfw/live" target="_blank" class="btn btn-tiktok" style="max-width: 260px; margin: 0 auto;">
-                <i class="fa-solid fa-headset"></i> شاهد البث في TikTok
+            <div class="people-grid">
+                <div class="person-card" onclick="openDiscordProfile('ka.55')">
+                    <div class="person-icon-wrapper owner-icon">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div class="person-info">
+                        <span class="person-name">عراب</span>
+                        <span class="person-role">مالك السيرفر (الأونر)</span>
+                        <span class="person-tag">@ka.55</span>
+                    </div>
+                </div>
+
+                <div class="person-card" onclick="openDiscordProfile('9.9.9.9.5.09.')">
+                    <div class="person-icon-wrapper dev-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="person-info">
+                        <span class="person-name">فهد</span>
+                        <span class="person-role">مطور الموقع والأنظمة</span>
+                        <span class="person-tag">@9.9.9.9.5.09.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-grid">
+            <a href="https://www.roblox.com/games/71656579951930/MT#!/game-instances" target="_blank" class="action-btn btn-roblox">
+                <div class="btn-content">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>مابنا🩵</span>
+                </div>
+                <i class="fa-solid fa-chevron-left"></i>
             </a>
-        </div>
 
-        <!-- الإدارة -->
-        <div class="glass-box">
-            <div class="section-title" style="color: var(--gold);">
-                <i class="fa-solid fa-crown"></i>
-                <span>قائمة الإدارة</span>
-            </div>
-            <div class="grid-cards" id="admin-cards"></div>
-        </div>
-
-        <!-- المطورين -->
-        <div class="glass-box">
-            <div class="section-title" style="color: var(--roblox-blue);">
-                <i class="fa-solid fa-code"></i>
-                <span>المطورين</span>
-            </div>
-            <div class="grid-cards" id="dev-cards"></div>
-        </div>
-
-        <!-- الأزرار والرابط الخاص بروبلكس -->
-        <div class="btn-group">
-            <a id="discord-link" href="#" target="_blank" class="btn btn-discord">
-                <i class="fa-brands fa-discord"></i> سيرفر الديسكورد
+            <a href="https://www.tiktok.com/@mtzcfw" target="_blank" class="action-btn btn-tiktok">
+                <div class="btn-content">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>التيك توك الرسمـي (@mtzcfw)</span>
+                </div>
+                <i class="fa-solid fa-chevron-left"></i>
             </a>
-            <!-- زر مابنا روبلكس -->
-            <a id="roblox-link" href="https://www.roblox.com/games/71656579951930/MT#!/game-instances" target="_blank" class="btn btn-roblox">
-                <i class="fa-solid fa-gamepad"></i> مابنا🩵
+
+            <a id="discord-main-btn" href="https://discord.gg" target="_blank" class="action-btn btn-discord">
+                <div class="btn-content">
+                    <i class="fa-brands fa-discord"></i>
+                    <span>سيرفر الديسكورد</span>
+                </div>
+                <i class="fa-solid fa-chevron-left"></i>
             </a>
         </div>
     </div>
 
-    <!-- زر التعديل -->
-    <button class="dev-btn-trigger" onclick="authDev()"><i class="fa-solid fa-gear"></i></button>
+    <button class="admin-gear" onclick="openDevPanel()"><i class="fa-solid fa-sliders"></i></button>
 
-    <!-- لوحة التحكم -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal">
-            <h2 style="color: var(--gold); margin-bottom: 15px;"><i class="fa-solid fa-sliders"></i> لوحة التحكم</h2>
-            
-            <div class="form-group">
-                <label>رابط الشعار:</label>
-                <input type="text" id="in-logo">
-            </div>
-            <div class="form-group">
-                <label>رابط خلفية الموقع:</label>
-                <input type="text" id="in-bg">
-            </div>
-            <div class="form-group">
-                <label>تاريخ ووقت الافتتاح:</label>
+    <div class="modal-bg" id="dev-modal">
+        <div class="modal-body">
+            <h3 style="color: var(--accent-gold); margin-bottom: 15px;"><i class="fa-solid fa-gear"></i> إعدادات سريعة</h3>
+            <div class="input-box">
+                <label>تاريخ وقت الافتتاح:</label>
                 <input type="datetime-local" id="in-date">
             </div>
-            <div class="form-group">
-                <label>يوزر التيك توك:</label>
-                <input type="text" id="in-tiktok">
+            <div class="input-box">
+                <label>رابط سيرفر الديسكورد:</label>
+                <input type="text" id="in-discord" placeholder="https://discord.gg/xxx">
             </div>
-            <div class="form-group">
-                <label>رابط ماب روبلكس:</label>
-                <input type="text" id="in-roblox">
-            </div>
-
-            <div class="form-group">
-                <label>الإدارة (الاسم , اليوزر , رابط_صورة_الرتبة):</label>
-                <textarea id="in-admins" rows="3"></textarea>
-                <small style="color:#8a92a6">مثال: أحمد,mtzcfw,https://cdn-icons-png.flaticon.com/512/6941/6941697.png</small>
-            </div>
-
-            <div class="form-group">
-                <label>المطورين (الاسم , اليوزر , رابط_صورة_الرتبة):</label>
-                <textarea id="in-devs" rows="3"></textarea>
-            </div>
-
-            <div class="btn-group" style="margin-top: 20px;">
-                <button class="btn btn-roblox" onclick="saveData()">حفظ التعديلات</button>
-                <button class="btn" style="background: #333;" onclick="closeModal()">إغلاق</button>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button onclick="saveDevData()" style="flex: 1; padding: 12px; background: var(--accent-gold); color: #000; font-weight: 800; border: none; border-radius: 10px; cursor: pointer;">حفظ</button>
+                <button onclick="closeDevPanel()" style="padding: 12px 20px; background: #333; color: #fff; border: none; border-radius: 10px; cursor: pointer;">إلغاء</button>
             </div>
         </div>
     </div>
 
     <script>
-        // رابط الأفاتار من اليوزر تلقائياً
-        function getAvatarUrl(username) {
-            if (!username) return 'https://ui-avatars.com/api/?name=User';
-            if (username.startsWith('http')) return username;
-            return `https://unavatar.io/${username.trim()}`;
-        }
+        let targetDate = localStorage.getItem('mt_target_date') || new Date(Date.now() + 172800000).toISOString().slice(0, 16);
+        let discordUrl = localStorage.getItem('mt_discord_url') || 'https://discord.gg';
 
-        const defaultData = {
-            logo: 'https://via.placeholder.com/150/121621/ffb700?text=MT',
-            bg: 'https://images.wallpapersden.com/image/download/gta-5-roleplay_bWdpbm2UmZqaraWkpJRmbmdlrWZlbWU.jpg',
-            targetDate: new Date(Date.now() + 172800000).toISOString().slice(0, 16),
-            tiktok: 'mtzcfw',
-            discord: 'https://discord.gg/YOUR_DISCORD',
-            roblox: 'https://www.roblox.com/games/71656579951930/MT#!/game-instances',
-            admins: [
-                { name: 'مالك السيرفر', user: 'mtzcfw', badge: 'https://cdn-icons-png.flaticon.com/512/6941/6941697.png' }
-            ],
-            devs: [
-                { name: 'المطور الرئيسي', user: 'mtzcfw', badge: 'https://cdn-icons-png.flaticon.com/512/1005/1005141.png' }
-            ]
-        };
+        document.getElementById('discord-main-btn').href = discordUrl;
 
-        let db = JSON.parse(localStorage.getItem('mt_roblox_db')) || defaultData;
-
-        function loadUI() {
-            document.getElementById('logo-img').src = db.logo;
-            document.body.style.backgroundImage = `url('${db.bg}')`;
-            document.getElementById('tiktok-title').innerText = `البث المباشر (@${db.tiktok})`;
-            document.getElementById('tiktok-btn').href = `https://www.tiktok.com/@${db.tiktok}/live`;
-            document.getElementById('discord-link').href = db.discord;
-            document.getElementById('roblox-link').href = db.roblox || 'https://www.roblox.com/games/71656579951930/MT#!/game-instances';
-
-            // عرض الإدارة
-            document.getElementById('admin-cards').innerHTML = db.admins.map(a => `
-                <div class="user-card">
-                    <img class="user-avatar" src="${getAvatarUrl(a.user)}" alt="">
-                    <div class="user-info">
-                        <div class="user-name-row">
-                            <span style="font-weight:700; font-size:0.95rem;">${a.name}</span>
-                            ${a.badge ? `<img class="role-badge-img" src="${a.badge}" alt="رتبة">` : ''}
-                        </div>
-                        <span style="font-size:0.75rem; color:#8a92a6;">@${a.user}</span>
-                    </div>
-                </div>
-            `).join('');
-
-            // عرض المطورين
-            document.getElementById('dev-cards').innerHTML = db.devs.map(d => `
-                <div class="user-card">
-                    <img class="user-avatar" src="${getAvatarUrl(d.user)}" style="border-color: var(--roblox-blue);" alt="">
-                    <div class="user-info">
-                        <div class="user-name-row">
-                            <span style="font-weight:700; font-size:0.95rem;">${d.name}</span>
-                            ${d.badge ? `<img class="role-badge-img" src="${d.badge}" alt="رتبة">` : ''}
-                        </div>
-                        <span style="font-size:0.75rem; color:#8a92a6;">@${d.user}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function startTimer() {
-            const dest = new Date(db.targetDate).getTime();
+        function runTimer() {
+            const dest = new Date(targetDate).getTime();
             const now = new Date().getTime();
             const diff = dest - now;
 
@@ -458,56 +489,41 @@
             document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }
 
-        setInterval(startTimer, 1000);
+        setInterval(runTimer, 1000);
+        runTimer();
 
-        function authDev() {
-            const pwd = prompt("أدخل كلمة سر المطور للتحكم:");
+        function openDiscordProfile(username) {
+            navigator.clipboard.writeText(username);
+            alert(`تم نسخ يوزر الديسكورد: (${username})\nيمكنك الآن إضافته في الديسكورد مباشرة!`);
+        }
+
+        function openDevPanel() {
+            const pwd = prompt("أدخل كلمة السر للتحكم:");
             if (pwd === "MT221") {
-                document.getElementById('in-logo').value = db.logo;
-                document.getElementById('in-bg').value = db.bg;
-                document.getElementById('in-date').value = db.targetDate;
-                document.getElementById('in-tiktok').value = db.tiktok;
-                document.getElementById('in-roblox').value = db.roblox;
-
-                document.getElementById('in-admins').value = db.admins.map(a => `${a.name},${a.user},${a.badge || ''}`).join('\n');
-                document.getElementById('in-devs').value = db.devs.map(d => `${d.name},${d.user},${d.badge || ''}`).join('\n');
-
-                document.getElementById('modal').style.display = 'flex';
+                document.getElementById('in-date').value = targetDate;
+                document.getElementById('in-discord').value = discordUrl;
+                document.getElementById('dev-modal').style.display = 'flex';
             } else if (pwd !== null) {
-                alert("كلمة السر خاطئة!");
+                alert("كلمة السر غير صحيحة!");
             }
         }
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+        function closeDevPanel() {
+            document.getElementById('dev-modal').style.display = 'none';
         }
 
-        function saveData() {
-            db.logo = document.getElementById('in-logo').value;
-            db.bg = document.getElementById('in-bg').value;
-            db.targetDate = document.getElementById('in-date').value;
-            db.tiktok = document.getElementById('in-tiktok').value;
-            db.roblox = document.getElementById('in-roblox').value;
+        function saveDevData() {
+            targetDate = document.getElementById('in-date').value;
+            discordUrl = document.getElementById('in-discord').value;
 
-            db.admins = document.getElementById('in-admins').value.split('\n').filter(l => l.trim()).map(l => {
-                const p = l.split(',');
-                return { name: p[0]||'إداري', user: p[1]||'user', badge: p[2]||'' };
-            });
+            localStorage.setItem('mt_target_date', targetDate);
+            localStorage.setItem('mt_discord_url', discordUrl);
 
-            db.devs = document.getElementById('in-devs').value.split('\n').filter(l => l.trim()).map(l => {
-                const p = l.split(',');
-                return { name: p[0]||'مطور', user: p[1]||'user', badge: p[2]||'' };
-            });
-
-            localStorage.setItem('mt_roblox_db', JSON.stringify(db));
-            loadUI();
-            startTimer();
-            closeModal();
-            alert("تم التعديل والحفظ بنجاح!");
+            document.getElementById('discord-main-btn').href = discordUrl;
+            runTimer();
+            closeDevPanel();
+            alert("تم حفظ التعديلات بنجاح!");
         }
-
-        loadUI();
-        startTimer();
     </script>
 </body>
 </html>
