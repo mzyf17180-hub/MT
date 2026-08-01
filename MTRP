@@ -167,7 +167,9 @@
         }
 
         function verifyDiscord() {
-            alert("سيتم توجيهك للتحقق عبر البوت وإرسال الكود على الخاص.");
+            alert("تم توجيهك! يرجى الذهاب للديسكورد وكتابة الأمر !verify للبوت في سيرفرنا عشان يجيك رمز التحقق على الخاص.");
+            // ملاحظة: إذا تبي تخليه يفتح سيرفر الديسكورد مباشرة فك السطر اللي تحت وحط رابط سيرفرك
+            // window.open('https://discord.gg/رابط_سيرفرك', '_blank');
         }
 
         function handleLogin(event) {
@@ -201,7 +203,7 @@
 
         function checkOwner() {
             const pass = document.getElementById("ownerPass").value;
-            if(pass === "MTRP11") { // كلمة السر الجديدة المحدثة
+            if(pass === "MTRP11") { // كلمة السر الجديدة للأونرز
                 alert("تم التحقق بنجاح! أهلاً بك يا أونر.");
             } else {
                 alert("كلمة المرور غير صحيحة!");
