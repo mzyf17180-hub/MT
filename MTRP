@@ -201,7 +201,7 @@
 
         function checkOwner() {
             const pass = document.getElementById("ownerPass").value;
-            if(pass === "MTRP2026@Owner") { // تقدر تغير الباسورد من هنا
+            if(pass === "MTRP11") { // كلمة السر الجديدة المحدثة
                 alert("تم التحقق بنجاح! أهلاً بك يا أونر.");
             } else {
                 alert("كلمة المرور غير صحيحة!");
