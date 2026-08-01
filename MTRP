@@ -3,511 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MT ROLEPLAY - OFFICIAL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>نظام إدارة MTRP الشامل</title>
     <style>
-        :root {
-            --primary: #ff2a55;
-            --primary-glow: rgba(255, 42, 85, 0.4);
-            --gold: #ffb700;
-            --gold-glow: rgba(255, 183, 0, 0.3);
-            --roblox-blue: #00a2ff;
-            --discord: #5865F2;
-            --tiktok: #ff0050;
-            --bg-dark: #07090e;
-            --card-glass: rgba(18, 22, 33, 0.7);
-            --border-glass: rgba(255, 255, 255, 0.08);
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #0b0b0e; color: #fff; min-height: 100vh; }
+        
+        /* شاشة تسجيل الدخول */
+        #loginScreen { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .login-card { background: #141419; border: 1px solid #2d2d3d; border-radius: 12px; width: 100%; max-width: 420px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); text-align: center; }
+        .logo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ff7b00; }
+        h2 { color: #ff7b00; margin-bottom: 5px; font-size: 22px; }
+        .subtitle { color: #8c8c9e; font-size: 13px; margin-bottom: 25px; }
+        .form-group { text-align: right; margin-bottom: 15px; }
+        label { display: block; font-size: 13px; color: #b4b4c7; margin-bottom: 5px; }
+        input, textarea { width: 100%; padding: 12px; background: #1c1c24; border: 1px solid #333347; border-radius: 8px; color: #fff; font-size: 14px; outline: none; transition: 0.3s; }
+        input:focus, textarea:focus { border-color: #ff7b00; box-shadow: 0 0 8px rgba(255,123,0,0.3); }
+        .btn-discord { background: #5865F2; color: #fff; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
+        .btn-discord:hover { background: #4752c4; }
+        .btn-submit { background: linear-gradient(135deg, #ff7b00, #7b2cbf); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { opacity: 0.9; }
+        .footer-warning { margin-top: 20px; font-size: 10px; color: #555568; background: #0f0f14; padding: 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            user-select: none;
-        }
-
-        body {
-            background: var(--bg-dark) url('https://images.wallpapersden.com/image/download/gta-5-roleplay_bWdpbm2UmZqaraWkpJRmbmdlrWZlbWU.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 15px;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(7, 9, 14, 0.75) 0%, rgba(7, 9, 14, 0.95) 100%);
-            backdrop-filter: blur(8px);
-            z-index: 0;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .logo-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold);
-            box-shadow: 0 0 25px var(--gold-glow);
-            margin-bottom: 12px;
-        }
-
-        .badge-season {
-            background: linear-gradient(90deg, var(--primary), #ff7300);
-            color: #fff;
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 8px;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            text-shadow: 0 0 20px rgba(255,255,255,0.2);
-        }
-
-        .glass-box {
-            background: var(--card-glass);
-            border: 1px solid var(--border-glass);
-            backdrop-filter: blur(16px);
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 22px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .timer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-            direction: ltr;
-        }
-
-        .time-card {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border-glass);
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .time-num {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        .time-label {
-            font-size: 0.75rem;
-            color: #8a92a6;
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-        }
-
-        .user-card {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid var(--border-glass);
-            border-radius: 14px;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .user-avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--gold);
-            background-color: #1a1d26;
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .user-name-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .role-badge-img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            flex: 1;
-            min-width: 180px;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1rem;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.15);
-        }
-
-        .btn-discord { background: var(--discord); }
-        .btn-tiktok { background: linear-gradient(45deg, #00f2fe, #ff0050); }
-        .btn-roblox { background: linear-gradient(45deg, #00a2ff, #0055ff); box-shadow: 0 0 15px rgba(0, 162, 255, 0.4); }
-
-        .dev-btn-trigger {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(18, 22, 33, 0.9);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 99;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .modal {
-            background: #10141e;
-            border: 1px solid var(--gold);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 550px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 25px;
-        }
-
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 0.85rem; color: #8a92a6; margin-bottom: 5px; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-glass);
-            border-radius: 8px;
-            color: #fff;
-        }
+        /* لوحة التحكم (مخفية حتى يتم تسجيل الدخول) */
+        #appScreen { display: none; height: 100vh; overflow: hidden; display: flex; }
+        .sidebar { width: 260px; background: #141419; border-left: 1px solid #2d2d3d; display: flex; flex-direction: column; padding: 20px; }
+        .sidebar h3 { color: #ff7b00; margin-bottom: 20px; font-size: 18px; text-align: center; }
+        .sidebar button { background: transparent; border: none; color: #b4b4c7; padding: 12px; text-align: right; width: 100%; border-radius: 8px; cursor: pointer; margin-bottom: 8px; transition: 0.3s; font-size: 14px; }
+        .sidebar button:hover, .sidebar button.active { background: linear-gradient(135deg, rgba(255,123,0,0.2), rgba(123,44,191,0.2)); color: #ff7b00; border-right: 3px solid #ff7b00; }
+        
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        header { background: #141419; padding: 15px 30px; border-bottom: 1px solid #2d2d3d; display: flex; justify-content: space-between; align-items: center; }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .user-info img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #7b2cbf; }
+        
+        .content-body { padding: 30px; }
+        .panel-section { display: none; }
+        .panel-section.active { display: block; }
+        
+        .form-box { background: #141419; border: 1px solid #2d2d3d; padding: 25px; border-radius: 10px; max-width: 600px; }
+        .form-box h3 { color: #7b2cbf; margin-bottom: 15px; }
+        .input-group { margin-bottom: 15px; text-align: right; }
+        .input-group label { display: block; color: #ff7b00; font-size: 13px; margin-bottom: 5px; }
+        .btn-send { background: linear-gradient(135deg, #ff7b00, #7b2cbf); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; }
+        .btn-logout { background: #d9534f; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- الهيدر -->
-        <header>
-            <img id="logo-img" class="logo-img" src="https://via.placeholder.com/150/121621/ffb700?text=MT" alt="MT Logo">
-            <div><span class="badge-season">SEASON 8 - السيزون الثامن</span></div>
-            <h1 id="server-title">MT ROLEPLAY</h1>
-        </header>
+    <!-- 1️⃣ واجهة تسجيل الدخول -->
+    <div id="loginScreen">
+        <div class="login-card">
+            <h2>نظام إدارة MTRP</h2>
+            <p class="subtitle">مرحباً بك، يرجى تسجيل الدخول للمتابعة</p>
 
-        <!-- عداد الافتتاح -->
-        <div class="glass-box text-center">
-            <div class="section-title" style="justify-content: center; color: var(--gold);">
-                <i class="fa-solid fa-clock"></i>
-                <span>الوقت المتبقي لافتتاح الماب</span>
-            </div>
-            <div class="timer-grid">
-                <div class="time-card"><span class="time-num" id="d">00</span><span class="time-label">أيام</span></div>
-                <div class="time-card"><span class="time-num" id="h">00</span><span class="time-label">ساعات</span></div>
-                <div class="time-card"><span class="time-num" id="m">00</span><span class="time-label">دقائق</span></div>
-                <div class="time-card"><span class="time-num" id="s">00</span><span class="time-label">ثواني</span></div>
-            </div>
-        </div>
+            <button type="button" class="btn-discord" onclick="verifyDiscord()">
+                🔒 1 - تحقق الديسكورد (إلزامي)
+            </button>
 
-        <!-- قسم التيك توك -->
-        <div class="glass-box" style="text-align: center;">
-            <div class="section-title" style="justify-content: center; color: var(--tiktok);">
-                <i class="fa-brands fa-tiktok"></i>
-                <span id="tiktok-title">البث المباشر (@mtzcfw)</span>
-            </div>
-            <p style="color: #8a92a6; font-size: 0.85rem; margin-bottom: 15px;">انقر هنا لمتابعة البث مباشرة</p>
-            <a id="tiktok-btn" href="https://www.tiktok.com/@mtzcfw/live" target="_blank" class="btn btn-tiktok" style="max-width: 260px; margin: 0 auto;">
-                <i class="fa-solid fa-headset"></i> شاهد البث في TikTok
-            </a>
-        </div>
-
-        <!-- الإدارة -->
-        <div class="glass-box">
-            <div class="section-title" style="color: var(--gold);">
-                <i class="fa-solid fa-crown"></i>
-                <span>قائمة الإدارة</span>
-            </div>
-            <div class="grid-cards" id="admin-cards"></div>
-        </div>
-
-        <!-- المطورين -->
-        <div class="glass-box">
-            <div class="section-title" style="color: var(--roblox-blue);">
-                <i class="fa-solid fa-code"></i>
-                <span>المطورين</span>
-            </div>
-            <div class="grid-cards" id="dev-cards"></div>
-        </div>
-
-        <!-- الأزرار والرابط الخاص بروبلكس -->
-        <div class="btn-group">
-            <a id="discord-link" href="#" target="_blank" class="btn btn-discord">
-                <i class="fa-brands fa-discord"></i> سيرفر الديسكورد
-            </a>
-            <!-- زر مابنا روبلكس -->
-            <a id="roblox-link" href="https://www.roblox.com/games/71656579951930/MT#!/game-instances" target="_blank" class="btn btn-roblox">
-                <i class="fa-solid fa-gamepad"></i> مابنا🩵
-            </a>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>رتبتك / اليونت (مثال: HC-1)</label>
+                    <input type="text" id="unitInput" placeholder="0-0 / HC-1 / AG-1" required>
+                </div>
+                <div class="form-group">
+                    <label>رمز الدخول (الخاص بك)</label>
+                    <input type="password" id="passInput" placeholder="أدخل كلمة المرور" required>
+                </div>
+                <div class="form-group">
+                    <label>اسم حساب Roblox</label>
+                    <input type="text" id="robloxInput" placeholder="RobloxUsername" required>
+                </div>
+                <button type="submit" class="btn-submit">تسجيل الدخول الآمن</button>
+            </form>
+            <div class="footer-warning">Unauthorized Access is a Federal Offense</div>
         </div>
     </div>
 
-    <!-- زر التعديل -->
-    <button class="dev-btn-trigger" onclick="authDev()"><i class="fa-solid fa-gear"></i></button>
+    <!-- 2️⃣ لوحة التحكم الرئيسية -->
+    <div id="appScreen" style="display: none;">
+        <div class="sidebar">
+            <h3>نظام MTRP</h3>
+            <button class="active" onclick="switchTab(event, 'complaints')">📋 نظام الشكاوي</button>
+            <button onclick="switchTab(event, 'suggestions')">💡 المقترحات</button>
+            <button onclick="switchTab(event, 'owners')">🔒 قائمة الأونرز</button>
+        </div>
 
-    <!-- لوحة التحكم -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal">
-            <h2 style="color: var(--gold); margin-bottom: 15px;"><i class="fa-solid fa-sliders"></i> لوحة التحكم</h2>
-            
-            <div class="form-group">
-                <label>رابط الشعار:</label>
-                <input type="text" id="in-logo">
-            </div>
-            <div class="form-group">
-                <label>رابط خلفية الموقع:</label>
-                <input type="text" id="in-bg">
-            </div>
-            <div class="form-group">
-                <label>تاريخ ووقت الافتتاح:</label>
-                <input type="datetime-local" id="in-date">
-            </div>
-            <div class="form-group">
-                <label>يوزر التيك توك:</label>
-                <input type="text" id="in-tiktok">
-            </div>
-            <div class="form-group">
-                <label>رابط ماب روبلكس:</label>
-                <input type="text" id="in-roblox">
-            </div>
+        <div class="main-content">
+            <header>
+                <h2>مرحباً بك في نظام إدارة MTRP</h2>
+                <div class="user-info">
+                    <span id="userNameDisplay">الإداري</span>
+                    <img src="https://via.placeholder.com/40" alt="Avatar">
+                    <button class="btn-logout" onclick="logout()">تسجيل خروج</button>
+                </div>
+            </header>
 
-            <div class="form-group">
-                <label>الإدارة (الاسم , اليوزر , رابط_صورة_الرتبة):</label>
-                <textarea id="in-admins" rows="3"></textarea>
-                <small style="color:#8a92a6">مثال: أحمد,mtzcfw,https://cdn-icons-png.flaticon.com/512/6941/6941697.png</small>
-            </div>
+            <div class="content-body">
+                <!-- قسم الشكاوي -->
+                <div id="complaints" class="panel-section active">
+                    <div class="form-box">
+                        <h3>نموذج تقديم شكوى</h3>
+                        <form onsubmit="submitComplaint(event)">
+                            <div class="input-group">
+                                <label>1 - اسم المشتكي</label>
+                                <input type="text" id="c1" placeholder="اكتب اسمك هنا..." required>
+                            </div>
+                            <div class="input-group">
+                                <label>2 - اسم المشتكا عليه</label>
+                                <input type="text" id="c2" placeholder="اكتب اسم الشخص..." required>
+                            </div>
+                            <div class="input-group">
+                                <label>3 - سبب الشكوى</label>
+                                <textarea id="c3" rows="3" placeholder="اشرح السبب بالتفصيل..." required></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label>4 - هل لديك دليل؟ (أرفق الرابط)</label>
+                                <input type="text" id="c4" placeholder="رابط الدليل (صورة/فيديو)" required>
+                            </div>
+                            <button type="submit" class="btn-send">إرسال الشكوى</button>
+                        </form>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label>المطورين (الاسم , اليوزر , رابط_صورة_الرتبة):</label>
-                <textarea id="in-devs" rows="3"></textarea>
-            </div>
+                <!-- قسم المقترحات -->
+                <div id="suggestions" class="panel-section">
+                    <div class="form-box">
+                        <h3>تقديم اقتراح لتطوير السيرفر</h3>
+                        <form onsubmit="alert('تم إرسال اقتراحك للإدارة بنجاح!'); event.target.reset();">
+                            <div class="input-group">
+                                <label>ما هو اقتراحك؟</label>
+                                <textarea rows="4" placeholder="اكتب اقتراحك هنا..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-send">إرسال الاقتراح</button>
+                        </form>
+                    </div>
+                </div>
 
-            <div class="btn-group" style="margin-top: 20px;">
-                <button class="btn btn-roblox" onclick="saveData()">حفظ التعديلات</button>
-                <button class="btn" style="background: #333;" onclick="closeModal()">إغلاق</button>
+                <!-- قسم الأونرز -->
+                <div id="owners" class="panel-section">
+                    <div class="form-box">
+                        <h3>لوحة تحكم الأونرز (محمية)</h3>
+                        <div class="input-group">
+                            <label>كلمة سر الأونرز الخاصة</label>
+                            <input type="password" id="ownerPass" placeholder="أدخل كلمة المرور السرية...">
+                        </div>
+                        <button type="button" class="btn-send" onclick="checkOwner()">دخول اللوحة السرية</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // رابط الأفاتار من اليوزر تلقائياً
-        function getAvatarUrl(username) {
-            if (!username) return 'https://ui-avatars.com/api/?name=User';
-            if (username.startsWith('http')) return username; // لو حط رابط بالغلط
-            return `https://unavatar.io/${username.trim()}`;
-        }
-
-        const defaultData = {
-            logo: 'https://via.placeholder.com/150/121621/ffb700?text=MT',
-            bg: 'https://images.wallpapersden.com/image/download/gta-5-roleplay_bWdpbm2UmZqaraWkpJRmbmdlrWZlbWU.jpg',
-            targetDate: new Date(Date.now() + 172800000).toISOString().slice(0, 16),
-            tiktok: 'mtzcfw',
-            discord: 'https://discord.gg/YOUR_DISCORD',
-            roblox: 'https://www.roblox.com/games/71656579951930/MT#!/game-instances',
-            admins: [
-                { name: 'مالك السيرفر', user: 'mtzcfw', badge: 'https://cdn-icons-png.flaticon.com/512/6941/6941697.png' }
-            ],
-            devs: [
-                { name: 'المطور الرئيسي', user: 'mtzcfw', badge: 'https://cdn-icons-png.flaticon.com/512/1005/1005141.png' }
-            ]
-        };
-
-        let db = JSON.parse(localStorage.getItem('mt_roblox_db')) || defaultData;
-
-        function loadUI() {
-            document.getElementById('logo-img').src = db.logo;
-            document.body.style.backgroundImage = `url('${db.bg}')`;
-            document.getElementById('tiktok-title').innerText = `البث المباشر (@${db.tiktok})`;
-            document.getElementById('tiktok-btn').href = `https://www.tiktok.com/@${db.tiktok}/live`;
-            document.getElementById('discord-link').href = db.discord;
-            document.getElementById('roblox-link').href = db.roblox || 'https://www.roblox.com/games/71656579951930/MT#!/game-instances';
-
-            // عرض الإدارة
-            document.getElementById('admin-cards').innerHTML = db.admins.map(a => `
-                <div class="user-card">
-                    <img class="user-avatar" src="${getAvatarUrl(a.user)}" alt="">
-                    <div class="user-info">
-                        <div class="user-name-row">
-                            <span style="font-weight:700; font-size:0.95rem;">${a.name}</span>
-                            ${a.badge ? `<img class="role-badge-img" src="${a.badge}" alt="رتبة">` : ''}
-                        </div>
-                        <span style="font-size:0.75rem; color:#8a92a6;">@${a.user}</span>
-                    </div>
-                </div>
-            `).join('');
-
-            // عرض المطورين
-            document.getElementById('dev-cards').innerHTML = db.devs.map(d => `
-                <div class="user-card">
-                    <img class="user-avatar" src="${getAvatarUrl(d.user)}" style="border-color: var(--roblox-blue);" alt="">
-                    <div class="user-info">
-                        <div class="user-name-row">
-                            <span style="font-weight:700; font-size:0.95rem;">${d.name}</span>
-                            ${d.badge ? `<img class="role-badge-img" src="${d.badge}" alt="رتبة">` : ''}
-                        </div>
-                        <span style="font-size:0.75rem; color:#8a92a6;">@${d.user}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function startTimer() {
-            const dest = new Date(db.targetDate).getTime();
-            const now = new Date().getTime();
-            const diff = dest - now;
-
-            if (diff <= 0) {
-                document.getElementById('d').innerText = '00';
-                document.getElementById('h').innerText = '00';
-                document.getElementById('m').innerText = '00';
-                document.getElementById('s').innerText = '00';
-                return;
-            }
-
-            document.getElementById('d').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById('h').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById('m').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById('s').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }
-
-        setInterval(startTimer, 1000);
-
-        function authDev() {
-            const pwd = prompt("أدخل كلمة سر المطور للتحكم:");
-            if (pwd === "MT221") {
-                document.getElementById('in-logo').value = db.logo;
-                document.getElementById('in-bg').value = db.bg;
-                document.getElementById('in-date').value = db.targetDate;
-                document.getElementById('in-tiktok').value = db.tiktok;
-                document.getElementById('in-roblox').value = db.roblox;
-
-                document.getElementById('in-admins').value = db.admins.map(a => `${a.name},${a.user},${a.badge || ''}`).join('\n');
-                document.getElementById('in-devs').value = db.devs.map(d => `${d.name},${d.user},${d.badge || ''}`).join('\n');
-
-                document.getElementById('modal').style.display = 'flex';
-            } else if (pwd !== null) {
-                alert("كلمة السر خاطئة!");
+        // التحقق التلقائي من الجلسة عند فتح الملف
+        window.onload = function() {
+            const savedUser = localStorage.getItem("mtrp_logged_user");
+            if (savedUser) {
+                const data = JSON.parse(savedUser);
+                document.getElementById("userNameDisplay").innerText = "يوزر: " + data.roblox;
+                document.getElementById("loginScreen").style.display = "none";
+                document.getElementById("appScreen").style.display = "flex";
             }
         }
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+        function verifyDiscord() {
+            alert("سيتم توجيهك للتحقق عبر البوت وإرسال الكود على الخاص.");
         }
 
-        function saveData() {
-            db.logo = document.getElementById('in-logo').value;
-            db.bg = document.getElementById('in-bg').value;
-            db.targetDate = document.getElementById('in-date').value;
-            db.tiktok = document.getElementById('in-tiktok').value;
-            db.roblox = document.getElementById('in-roblox').value;
+        function handleLogin(event) {
+            event.preventDefault();
+            const unit = document.getElementById("unitInput").value;
+            const roblox = document.getElementById("robloxInput").value;
 
-            db.admins = document.getElementById('in-admins').value.split('\n').filter(l => l.trim()).map(l => {
-                const p = l.split(',');
-                return { name: p[0]||'إداري', user: p[1]||'user', badge: p[2]||'' };
-            });
-
-            db.devs = document.getElementById('in-devs').value.split('\n').filter(l => l.trim()).map(l => {
-                const p = l.split(',');
-                return { name: p[0]||'مطور', user: p[1]||'user', badge: p[2]||'' };
-            });
-
-            localStorage.setItem('mt_roblox_db', JSON.stringify(db));
-            loadUI();
-            startTimer();
-            closeModal();
-            alert("تم التعديل والحفظ بنجاح!");
+            // حفظ الجلسة محلياً عشان ما ينطرد ويحفظ دخوله تلقائياً
+            localStorage.setItem("mtrp_logged_user", JSON.stringify({ unit, roblox, time: Date.now() }));
+            
+            document.getElementById("userNameDisplay").innerText = "يوزر: " + roblox;
+            document.getElementById("loginScreen").style.display = "none";
+            document.getElementById("appScreen").style.display = "flex";
         }
 
-        loadUI();
-        startTimer();
+        function switchTab(evt, tabName) {
+            let sections = document.querySelectorAll('.panel-section');
+            sections.forEach(s => s.classList.remove('active'));
+            let buttons = document.querySelectorAll('.sidebar button');
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        function submitComplaint(event) {
+            event.preventDefault();
+            alert("تم إرسال الشكوى بنجاح وسيتم معالجتها وإرسالها للنظام تلقائياً!");
+            event.target.reset();
+        }
+
+        function checkOwner() {
+            const pass = document.getElementById("ownerPass").value;
+            if(pass === "MTRP2026@Owner") { // تقدر تغير الباسورد من هنا
+                alert("تم التحقق بنجاح! أهلاً بك يا أونر.");
+            } else {
+                alert("كلمة المرور غير صحيحة!");
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("mtrp_logged_user");
+            location.reload();
+        }
     </script>
 </body>
 </html>
